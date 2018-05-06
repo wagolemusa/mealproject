@@ -1,0 +1,15 @@
+{% extends  "base.html" %}
+
+{% block title %}Meals {% endblock %}
+
+{% block content %}
+
+	{% for article in articles %}
+
+		<li class="list-group-item"><a href="articles/{{article.id}}">{{ article.title }}</a></li>
+
+	{% endfor %}
+
+	<h1>retetetettett</h1>
+
+{% endblock %}

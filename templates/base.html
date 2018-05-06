@@ -1,0 +1,82 @@
+<!-- base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="static/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="static/css/style.css" rel="stylesheet">
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+    <a class="navbar-brand" href="#">Meal App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home</a> <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/meals">Meals</a>
+            
+        </ul>
+        <ul class="nav navbar-nav nav-flex-icon ml-auto primary-color">
+
+            {% if session.logged_in %}
+                 <li><a class="nav-link" href="/logout">Logout</a></li>
+                 <li><a class="nav-link" href="/dashboard">Dashboard</a></li>
+            {% else %}
+
+                <li><a class="nav-link" href="/register">Register</a></li>
+                <li><a class="nav-link" href="/login">Login</a></li>
+
+            {% endif %}
+
+        </ul>
+
+    </div>
+</nav>
+
+
+
+  </head>
+  <body>
+<div class="container">
+<!-- child template -->
+{% block content %} {% endblock %}
+
+{% if error %}
+    <p class="error"><strong>Error:</strong>{{ error }}</p>
+
+{% endif %}
+
+
+{% for message in get_flashed_messages() %}
+    {{ message }}
+{% endfor %}
+
+
+ <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="static/js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="static/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="static/js/mdb.min.js"></script>
+

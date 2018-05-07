@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, url_for, session, flash
+from flask import Flask, jsonify, render_template, redirect, request, url_for, session, flash
 
 from functools import wraps
 
@@ -38,19 +38,29 @@ def welcome():
 def dashboard():
 	return render_template('dashboard.html')
 
+
 @app.route('/register')
 def register():
-	return render_template('register.html')
+	return redirect(url_for('register_page'))
+@app.route('/api/v1/auth/register', methods=['GET', 'POST'])
+def register_page():
+	error = None
+	if request.method == 'POST':
+	    return redirect(url_for('register.html'))
+	return render_template('register.html', error=error)
+
 
 @app.route('/meals')
 def meals():
 	return render_template('meals.html', articles=Articles)
 
-
-
 # login
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login')
 def login():
+	return redirect(url_for('login_page'))
+
+@app.route('/api/v1/auth/login', methods=['GET', 'POST'])
+def login_page():
 	error = None
 	if request.method == 'POST':
 		if request.form['username'] != 'admin' or request.form['password'] != 'admin':

@@ -31,5 +31,27 @@ def Articles():
 
 				},
 
+
+				{
+
+					'id' : 4,
+					'title' : 'Meat and Posh',
+
+					'body'  : 'An action should include at least one response from the server which must include a status code and may contain a body.',
+
+				},
+
+
+
+				{
+
+					'id' : 5,
+					'title' : 'Rice',
+
+					'body'  : 'The best food photography pictures of Pexels. Browse through high quality and royalty free stock photos of cakes, salads, beautifully decorated plates...',
+
+				},
+
+
 	]
 	return articles

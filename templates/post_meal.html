@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} Post Meal {% endblock %}
+
+
+
+{% block content %}
+
+<div class="container">
+<h1>Post Meals</h1>
+
+<form method="POST" action="">
+		<div class="form-group">
+		<input type="text" name="title" class="form-control" value="" placeholder="Title">
+		</div><br/>
+
+<div class="form-group">
+    <textarea type="text" id="defaultFormContactMessageEx" class="form-control" rows="3"></textarea>
+		</div>
+
+
+	<p><input type="submit" class="btn btn-primary" value="Submit"></p>
+	</form>
+
+
+</div>
+
+{% endblock %}

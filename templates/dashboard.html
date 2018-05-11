@@ -6,9 +6,41 @@
 
 
 {% block content %}
+<br/><br/>
+
+<h1>Dashboard<small> Welcome  {{session.username}}</small></h1>
+<a class="btn btn-success" href="/post_meal">Post Meal</a>
+<a class="btn btn-success" href="/view_orders">Views Order</a>
+
+<br/>
+<br/>
+<br/>
+
+<table class="table table-striped">
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th></th>
+<th></th>
+</tr>
 
 
-<h1>Dashboard</h1>
+{% for article in articles %}
+
+<tr>
+	<th>{{article.id}}</th>
+	<th>{{article.title}}</th>
+		<td><a href="edit_meal/{{article.id}}" class="btn btn-default pull-right">Edit</a></td>
+
+<th><a href="#" class="btn btn-danger">Delete</th>
+
+</tr>
+	
+{% endfor %}
+
+</table>
+
+
 
 
 

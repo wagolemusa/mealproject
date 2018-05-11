@@ -1,15 +1,42 @@
 {% extends  "base.html" %}
 
-{% block title %}Meals {% endblock %}
+{% block title %} Meal {% endblock %}
 
 {% block content %}
 
-	{% for article in articles %}
 
-		<li class="list-group-item"><a href="articles/{{article.id}}">{{ article.title }}</a></li>
+<!-- Card -->
+<br
+<div class="container">
 
-	{% endfor %}
+	<div class="row">
+		{% for article in articles %}
 
-	<h1>retetetettett</h1>
+   <div class="col-lg-4 col-md-12 mb-4">
+<div class="card card-image mb-3" style="background-image: url(https://food.fnr.sndimg.com/content/dam/images/food/fullset/2014/7/25/0/FNK_10-Minute-White-Bean-Soup-Toasted-Cheese-Tomato-Time.jpg.rend.hgtvcom.966.725.suffix/1406320596378.jpeg);">
+
+    <!-- Content -->
+    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+        <div>
+            <h5 class="pink-text"><i class="fa fa-pie-chart"></i> First food</h5>
+  <h3 class="card-title pt-2"><strong><a href="meal/{{article.id}}" style="color: #00c851 !important;">{{ article.title }}</a></strong></h3>
+            <p>{{ article.body}} </p>
+					<a class="btn btn-success" href="/order_meal">Order Now</a>
+        </div>
+    </div>
+    <!-- Content -->
+</div>
+
+https://food.fnr.sndimg.com/content/dam/images/food/fullset/2014/7/25/0/FNK_10-Minute-White-Bean-Soup-Toasted-Cheese-Tomato-Time.jpg.rend.hgtvcom.966.725.suffix/1406320596378.jpeg
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+   
 
 {% endblock %}

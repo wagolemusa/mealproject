@@ -1,7 +1,10 @@
 from flask import Flask, jsonify, render_template, redirect, request, url_for, session, flash
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 
 from functools import wraps
-
+#from OpenSSL import SSL
+#import sys, os, select, socket
+   
 from data import Articles
 
 app = Flask(__name__)
@@ -11,17 +14,17 @@ app.secret_key = "my precious"
 
 Articles = Articles()
 
+
 def login_required(f):
 	@wraps(f)
 	def wrap(*args, **kwargs):
 		if 'logged_in' in session:
 			return f(*args, **kwargs)
 		else:
-			flash('You need to login first.')
+			flash('You need to login first. Password "admin" userame "admin"')
 			return redirect(url_for('login'))
 	return wrap
  
-
 
 
 @app.route('/')
@@ -36,7 +39,19 @@ def welcome():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-	return render_template('dashboard.html')
+	return render_template('dashboard.html', articles=Articles)
+
+
+
+@app.route('/payment')
+def payment():
+	return render_template('payment.html')
+
+@app.route('/order_meal')
+def order_meal():
+	if request.method == 'POST':
+		return redirect(url_for('payment'))
+	return render_template('order_meal.html')
 
 
 @app.route('/register')
@@ -46,9 +61,13 @@ def register():
 def register_page():
 	error = None
 	if request.method == 'POST':
-	    return redirect(url_for('register.html'))
+	    return redirect(url_for('login'))
 	return render_template('register.html', error=error)
 
+
+@app.route('/view_orders')
+def view_orders():
+	return render_template('view_orders.html')
 
 @app.route('/meals')
 def meals():
@@ -68,8 +87,27 @@ def login_page():
 		else:
 			session['logged_in'] = True
 			flash('You were just logged_in!')
-			return redirect(url_for('welcome'))
+			return redirect(url_for('dashboard'))
 	return render_template('login.html', error=error)
+
+
+@app.route('/post_meal')
+@login_required
+def post_meal():
+	return redirect(url_for('post_meal_page'))
+@app.route('/api/v1/post_meal', methods=['GET', 'POST'])
+def post_meal_page():
+	if request.method == 'POST' and form.validator():
+		title.form.data
+		body.form.data
+		return redirect(url_for('post_meal'))
+	return render_template('post_meal.html')
+
+# retriving data from data.py by ID
+@app.route('/meal/<string:id>/')
+def meal(id):
+	return render_template('meal.html', id=id)
+
 
 
 
